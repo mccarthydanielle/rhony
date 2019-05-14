@@ -1,13 +1,19 @@
 import React from 'react'
-import ReactMapGL, { NavigationControl } from 'react-map-gl'
+import ReactMapGL, { NavigationControl, GeolocateControl } from 'react-map-gl'
+
+//style sheets
 import 'mapbox-gl/dist/mapbox-gl.css';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+
 
 import locationData from '../../server/dummyData'
 
+//components
 import Pin from './Pin'
 import FilterNav from './FilterNav'
 import PopupBox from './Popup'
 
+//keys
 const mapboxToken = process.env.REACT_APP_MAPBOX_TOKEN
 
 const navStyle = {
@@ -17,6 +23,12 @@ const navStyle = {
   padding: '10px'
 }
 
+const geolocateStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  margin: 10
+};
 
 export default class Map extends React.Component {
   constructor(props) {
@@ -64,6 +76,13 @@ export default class Map extends React.Component {
             <div className="nav" style={navStyle}>
               <NavigationControl onViewportChange={this._updateViewport} />
             </div>
+
+            <GeolocateControl
+              style={geolocateStyle}
+              onViewportChange={this._updateViewport}
+              positionOptions={{ enableHighAccuracy: true }}
+              trackUserLocation={true}
+            />
 
             {this.state.popupInfo ? <PopupBox closePopUp={this.closePopUp} location={this.state.popupInfo} /> : null}
 
