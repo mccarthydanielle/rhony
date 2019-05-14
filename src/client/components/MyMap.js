@@ -1,18 +1,19 @@
 import React from 'react'
-import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl'
+import ReactMapGL, { NavigationControl, Popup } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import locationData from '../../server/dummyData'
 
 import Pin from './Pin'
 import FilterNav from './FilterNav'
+import PopupBox from './Popup'
 
 const mapboxToken = process.env.REACT_APP_MAPBOX_TOKEN
 
 const navStyle = {
   position: 'absolute',
   top: 0,
-  left: 0,
+  right: 0,
   padding: '10px'
 }
 
@@ -27,30 +28,46 @@ export default class Map extends React.Component {
         zoom: 13,
         bearing: 0,
         pitch: 0,
-        width: "100vw",
+        width: "100%",
         height: "100vh",
-      }
+      },
+      popupInfo: null
     }
+    this.handlePopUp = this.handlePopUp.bind(this)
+    this.closePopUp = this.closePopUp.bind(this)
+  }
+
+  handlePopUp(popupInfo) {
+    this.setState({ popupInfo })
+  }
+
+  closePopUp() {
+    console.log('pop up is closing')
+    this.setState({ popupInfo: null })
   }
 
   render() {
     const { viewport } = this.state
     return (
-      <div>
-        <FilterNav />
-        <ReactMapGL
-          {...viewport}
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          mapboxApiAccessToken={mapboxToken}
-          onViewportChange={(viewport) => this.setState({ viewport })}
-        >
-          <div className="nav" style={navStyle}>
-            <NavigationControl />
-          </div>
+      <div style={{ display: 'flex' }}>
+        <FilterNav style={{ flex: 1 }} />
+        <div style={{ flex: 4 }}>
+          <ReactMapGL
+            {...viewport}
+            mapboxApiAccessToken={mapboxToken}
+            onViewportChange={(viewport) => this.setState({ viewport })}
+          >
+            <div className="nav" style={navStyle}>
+              <NavigationControl />
+            </div>
 
-          {locationData.map(curr => <Pin location={curr} />)}
+            {this.state.popupInfo ? <PopupBox closePopUp={this.closePopUp} location={this.state.popupInfo} /> : null}
 
-        </ReactMapGL>
+
+            {locationData.map(curr => <Pin key={curr.locationName} handlePopUp={this.handlePopUp} location={curr} />)}
+
+          </ReactMapGL>
+        </div>
       </div>
 
     );

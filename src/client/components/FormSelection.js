@@ -21,7 +21,7 @@ export default function FormSelection() {
         <div style={{ border: 'red solid 1px', flex: 1 }}>
           <p>Use this form to submit any other information.</p>
           <ul style={{ textAlign: 'left' }}>
-            <li>For example:</li>
+            <li style={{}}>For example:</li>
             <li>Help us implement our cast relationships graph, submit relationship connections between cast members</li>
             <li>New feature ideas  </li>
             <li>Anything else that you feel should be known.</li>

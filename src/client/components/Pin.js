@@ -1,15 +1,25 @@
 import React from 'react'
 import { Marker } from 'react-map-gl'
+import apple from '../../assets/apple2.png'
 
-export default function Pin(props) {
-  console.log('pin props', props)
+export default class Pin extends React.Component {
 
-  const { locationName, address, castMembers, description, neighborhood, seasons } = props.location
+  constructor() {
+    super()
+    this.state = {
+    }
+  }
 
-  const [lat, long] = [props.location.coords[0], props.location.coords[1]]
-  return (
-    <Marker latitude={lat} longitude={long} offsetLeft={0} offsetTop={0} >
-      <div>{locationName}</div>
-    </Marker>
-  )
+  render() {
+    const { locationName, address, castMembers, description, neighborhood, seasons } = this.props.location
+
+    const [lat, long] = this.props.location.coords
+    return (
+      <Marker latitude={lat} longitude={long} offsetLeft={-20} offsetTop={-10} >
+        <img onClick={() => this.props.handlePopUp(this.props.location)} style={{ size: '10px' }} src={apple} alt="apple" />
+      </Marker>
+    )
+  }
+
+
 }
