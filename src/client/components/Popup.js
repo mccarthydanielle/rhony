@@ -12,6 +12,7 @@ export default function PopupBox(props) {
       closeButton={true}
       closeOnClick={true} anchor="top">
       <div>{locationName}</div>
+      <div>{description}</div>
     </Popup>
   )
 }

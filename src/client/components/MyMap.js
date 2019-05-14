@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactMapGL, { NavigationControl, Popup } from 'react-map-gl'
+import ReactMapGL, { NavigationControl } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import locationData from '../../server/dummyData'
@@ -35,6 +35,7 @@ export default class Map extends React.Component {
     }
     this.handlePopUp = this.handlePopUp.bind(this)
     this.closePopUp = this.closePopUp.bind(this)
+    this._updateViewport = this._updateViewport.bind(this)
   }
 
   handlePopUp(popupInfo) {
@@ -42,8 +43,11 @@ export default class Map extends React.Component {
   }
 
   closePopUp() {
-    console.log('pop up is closing')
     this.setState({ popupInfo: null })
+  }
+
+  _updateViewport = (viewport) => {
+    this.setState({ viewport })
   }
 
   render() {
@@ -58,7 +62,7 @@ export default class Map extends React.Component {
             onViewportChange={(viewport) => this.setState({ viewport })}
           >
             <div className="nav" style={navStyle}>
-              <NavigationControl />
+              <NavigationControl onViewportChange={this._updateViewport} />
             </div>
 
             {this.state.popupInfo ? <PopupBox closePopUp={this.closePopUp} location={this.state.popupInfo} /> : null}
