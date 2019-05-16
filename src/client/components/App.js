@@ -6,6 +6,7 @@ import Routes from '../routes'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
+import '../css/App.css'
 
 function App() {
   return (

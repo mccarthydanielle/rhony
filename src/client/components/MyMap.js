@@ -3,8 +3,6 @@ import ReactMapGL, { NavigationControl, GeolocateControl } from 'react-map-gl'
 
 //style sheets
 import 'mapbox-gl/dist/mapbox-gl.css';
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-
 
 import locationData from '../../server/dummyData'
 
@@ -15,20 +13,6 @@ import PopupBox from './Popup'
 
 //keys
 const mapboxToken = process.env.REACT_APP_MAPBOX_TOKEN
-
-const navStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  padding: '10px'
-}
-
-const geolocateStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  margin: 10
-};
 
 export default class Map extends React.Component {
   constructor(props) {
@@ -43,11 +27,14 @@ export default class Map extends React.Component {
         width: "100%",
         height: "100vh",
       },
-      popupInfo: null
+      popupInfo: null,
+      locations: locationData
+
     }
     this.handlePopUp = this.handlePopUp.bind(this)
     this.closePopUp = this.closePopUp.bind(this)
     this._updateViewport = this._updateViewport.bind(this)
+    this.handleRelocate = this.handleRelocate.bind(this)
   }
 
   handlePopUp(popupInfo) {
@@ -62,23 +49,34 @@ export default class Map extends React.Component {
     this.setState({ viewport })
   }
 
+  handleRelocate(latitude, longitude) {
+    this.setState(prevState => ({
+      viewport: {
+        ...prevState.viewport,
+        latitude,
+        longitude,
+        zoom: 15
+      }
+    }))
+  }
+
   render() {
     const { viewport } = this.state
     return (
       <div style={{ display: 'flex' }}>
-        <FilterNav style={{ flex: 1 }} />
+        <FilterNav handleRelocate={this.handleRelocate} locations={this.state.locations} style={{ flex: 1 }} locations={this.state.locations} />
         <div style={{ flex: 4 }}>
           <ReactMapGL
             {...viewport}
             mapboxApiAccessToken={mapboxToken}
             onViewportChange={(viewport) => this.setState({ viewport })}
           >
-            <div className="nav" style={navStyle}>
+            <div className="nav navStyle" >
               <NavigationControl onViewportChange={this._updateViewport} />
             </div>
 
             <GeolocateControl
-              style={geolocateStyle}
+              className="geolocateStyle"
               onViewportChange={this._updateViewport}
               positionOptions={{ enableHighAccuracy: true }}
               trackUserLocation={true}

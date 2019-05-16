@@ -11,8 +11,6 @@ export default class Pin extends React.Component {
   }
 
   render() {
-    const { locationName, address, castMembers, description, neighborhood, seasons } = this.props.location
-
     const [lat, long] = this.props.location.coords
     return (
       <Marker latitude={lat} longitude={long} offsetLeft={-20} offsetTop={-10} >
