@@ -21,7 +21,7 @@ You will also see any lint errors in the console.
 
 ### Roadmap
 
-Check out upcoming and in process feature on this trello board.
+Check out upcoming and in process features on <a href="https://trello.com/b/xQZW7ark/rhony">this trello board </a>.
 
 ###Contributions
 If you'd like to contribute and get involved, send me an email or open an issue on github. If you are a more hands on person, just submit a pull request.
