@@ -3,7 +3,7 @@ import React from 'react';
 export default function About() {
   return (
     <div>
-      <div>THIS IS MY ABOUT COMPONENT!!!!!</div>
+      <div>THIS IS MY ABOUT COMPONENT!!!!! HAS THIS CHANGED?</div>
       <p>
         Hi fellow Bravo-obsessed people. My name is Danielle McCarthy and I
         developed this website after experiencing a lack of motivation to build
