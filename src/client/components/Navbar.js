@@ -1,37 +1,32 @@
-import React from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from "shards-react";
+import React from 'react';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'shards-react';
 
 export default function NavBar() {
-
   return (
-    <Navbar type="dark" theme="primary" expand="md">
-      <NavbarBrand href="/map">RHONY Finder</NavbarBrand>
+    <Navbar type="light" expand="md">
+      <NavbarBrand style={{ fontSize: '24px' }} href="/map">
+        RHONY for fun.
+      </NavbarBrand>
       <Nav navbar>
         <NavItem>
-          <NavLink href="/map">
+          <NavLink style={{ fontSize: '20px' }} href="/map">
             Map
-              </NavLink>
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/cast">
+          <NavLink style={{ fontSize: '20px' }} href="/cast">
             Cast
-              </NavLink>
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/contribute">
-            Contribute
-              </NavLink>
+          <NavLink style={{ fontSize: '20px' }} href="/contact">
+            Contact
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/about">
+          <NavLink style={{ fontSize: '20px' }} href="/about">
             About
-              </NavLink>
+          </NavLink>
         </NavItem>
       </Nav>
     </Navbar>
