@@ -67,7 +67,6 @@ export default class Map extends React.Component {
           handleRelocate={this.handleRelocate}
           locations={this.state.locations}
           style={{ flex: 1 }}
-          locations={this.state.locations}
         />
         <div style={{ flex: 4 }}>
           <ReactMapGL

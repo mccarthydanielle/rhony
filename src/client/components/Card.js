@@ -1,24 +1,33 @@
-import React from 'react'
+import React from 'react';
 import { Card } from 'semantic-ui-react';
 
 export default function LocationCard(props) {
-  const { locationName, address, castMembers, description, neighborhood, seasons } = props.locationDetails
+  const {
+    locationName,
+    address,
+    /*castMembers*/ description,
+    neighborhood,
+    seasons,
+  } = props.locationDetails;
 
-  const [lat, long] = props.locationDetails.coords
+  const [lat, long] = props.locationDetails.coords;
   return (
-    <Card onClick={() => props.handleRelocate(lat, long)} style={{ marginTop: '30px' }}>
+    <Card
+      onClick={() => props.handleRelocate(lat, long)}
+      style={{ marginTop: '30px' }}
+    >
       <Card.Content>
         <Card.Header>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div>{locationName}</div>
 
-            <div>
-              {locationName}
-            </div>
-
-            <div style={{}}>
-              {neighborhood}
-            </div>
-
+            <div style={{}}>{neighborhood}</div>
           </div>
         </Card.Header>
       </Card.Content>
@@ -28,5 +37,5 @@ export default function LocationCard(props) {
         <Card.Description>{description}</Card.Description>
       </Card.Content>
     </Card>
-  )
+  );
 }
