@@ -13,11 +13,11 @@ install:
 script:
   - npm test
   - npm run build
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: rhonyforfun
+  api_key:
+    secure: 'AJgj7rscw3nCVdP/Npch56fKeXs3+wxHBGNXyX8xTmPeSNel+h5gqiAWL74gIq0lf6Sd8UX6afGbgxTqeQhRrDInFRMtJwCiK/7TArhKtluJlo3azkDZ3I0XLKrc23577ZBKM0t+llvriFxTGdbTSjFnuTagrSNhOOYxE6NRLAmsXdisUwPBujjXdoiSvzlkih6dSQN0ssP1uhCPbwlmYsHwZQYTZK3dy7Ou5iaulwzPECqzJCrtC/Fq8mwH54b/jWO6sLI5b7SDVk2545BByh6MH6rrK5/p+B8dmH/Yde/1lPTS7fkkJVPGjdN5XNpDqS5sMxTwD2GRsgOwugJauiDy++KnpUp4EwfufnZPiHNVCb4ERYghrWZzRDUPrPoqlw4WqSlawS4DRKlzNP7CCigIobx6fC7ixZRU7pvvRjgMziCfmrV9xQqzVvST+A+EIen5OeWyOv51h+lJEHL4AnVzKeCnt8lCQZNBi4hKC9eLNANwHv9habKbHjkWIBzzHZo3RzPAylhweRasibUZ5JRbqzz29uL7o3/EOoFQz8YvpyFlHL+E0xBcL415XP7oAFdvnq78bb6i983GkoxyvXgl+77GspFysixRLJgyirFo38g9ax8WQTg4Lc9/CT+leP0vjArxKciPMU2SCJlyc4mA/3Af+jRG/mKfjLoDlYY='
