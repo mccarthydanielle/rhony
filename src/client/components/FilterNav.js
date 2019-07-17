@@ -2,6 +2,9 @@ import React from 'react';
 import { Dropdown, Card } from 'semantic-ui-react';
 
 import LocationCard from './Card';
+import MyMap from './MyMap';
+
+import locationData from '../../server/dummyData';
 
 import '../css/App.css';
 
@@ -31,54 +34,26 @@ const seasons = [
   { key: 11, text: '11', value: '11' },
 ];
 
-const cast = [
-  {
-    key: 'Luann de Lesseps',
-    text: 'Luann de Lesseps',
-    value: 'Luann de Lesseps',
-  },
-  {
-    key: 'Bethenny Frankel',
-    text: 'Bethenny Frankel',
-    value: 'Bethenny Frankel',
-  },
-  { key: 'Alex McCord', text: 'Alex McCord', value: 'Alex McCord' },
-  { key: 'Ramona Singer', text: 'Ramona Singer', value: 'Ramona Singer' },
-  { key: 'Jill Zarin', text: 'Jill Zarin', value: 'Jill Zarin' },
-  {
-    key: 'Kelly Killoren Bensimon',
-    text: 'Kelly Killoren Bensimon',
-    value: 'Kelly Killoren Bensimon',
-  },
-  { key: 'Sonja Morgan', text: 'Sonja Morgan', value: 'Sonja Morgan' },
-  { key: 'Cindy Barshop', text: 'Cindy Barshop', value: 'Cindy Barshop' },
-  { key: 'Aviva Drescher', text: 'Aviva Drescher', value: 'Aviva Drescher' },
-  {
-    key: 'Carole Radziwill',
-    text: 'Carole Radziwill',
-    value: 'Carole Radziwill',
-  },
-  { key: 'Heather Thomson', text: 'Heather Thomson', value: 'Heather Thomson' },
-  { key: 'KristenTaekman', text: 'KristenTaekman', value: 'KristenTaekman' },
-  { key: 'Dorinda Medley', text: 'Dorinda Medley', value: 'Dorinda Medley' },
-  { key: 'Jules Wainstein', text: 'Jules Wainstein', value: 'Jules Wainstein' },
-  {
-    key: 'Tinsley Mortimer',
-    text: 'Tinsley Mortimer',
-    value: 'Tinsley Mortimer',
-  },
-];
-
 export default class FilterNav extends React.Component {
   constructor() {
     super();
     this.state = {
       neighborhoods: [],
       seasons: [],
-      cast: [],
+      viewport: {
+        latitude: 40.7736,
+        longitude: -73.9566,
+        zoom: 13,
+        bearing: 0,
+        pitch: 0,
+        width: '100%',
+        height: '100vh',
+      },
     };
     this.handleChangeTest = this.handleChangeTest.bind(this);
     this.showAll = this.showAll.bind(this);
+    this._updateViewport = this._updateViewport.bind(this);
+    this.handleRelocate = this.handleRelocate.bind(this);
   }
 
   handleChangeTest(e, { value, name }) {
@@ -89,73 +64,82 @@ export default class FilterNav extends React.Component {
     this.setState({ neighborhoods: [], seasons: [], cast: [] });
   }
 
+  _updateViewport = viewport => {
+    console.log('viewport', viewport);
+    this.setState({ viewport });
+  };
+
+  handleRelocate(latitude, longitude) {
+    this.setState(prevState => ({
+      viewport: {
+        ...prevState.viewport,
+        latitude,
+        longitude,
+        zoom: 15,
+      },
+    }));
+  }
+
   render() {
     return (
-      <div className="entireFilterNav">
-        {/*----- filtering -----*/}
-        <div style={{ flex: 3 }}>
-          <div className="filterBlock">
-            <button onClick={this.showAll}>Show all</button>
-          </div>
+      <div style={{ display: 'flex' }}>
+        <div className="entireFilterNav">
+          {/*----- filtering -----*/}
+          <div style={{ flex: 3 }}>
+            <div className="filterBlock">
+              <button onClick={this.showAll}>Show all</button>
+            </div>
 
-          <div className="filterBlock">
-            <p className="filterHeader">Neighborhood</p>
-            <Dropdown
-              onChange={this.handleChangeTest}
-              value={this.state.neighborhoods}
-              name="neighborhoods"
-              placeholder="Neighborhoods"
-              options={neighborhoods}
-              selection
-              fluid
-              multiple
-              search
-            />
-          </div>
-
-          <div className="filterBlock">
-            <p className="filterHeader">Season</p>
-            <Dropdown
-              onChange={this.handleChangeTest}
-              value={this.state.seasons}
-              placeholder="Seasons"
-              name="seasons"
-              options={seasons}
-              selection
-              fluid
-              multiple
-              search
-            />
-          </div>
-
-          <div className="filterBlock">
-            <p className="filterHeader">Cast Member</p>
-            <Dropdown
-              onChange={this.handleChangeTest}
-              value={this.state.cast}
-              placeholder="Cast Members"
-              name="cast"
-              options={cast}
-              selection
-              fluid
-              multiple
-              search
-            />
-          </div>
-        </div>
-
-        {/*----- cards -----*/}
-        <div className="filterNavCardCluster">
-          <Card.Group className="sideCardStyling">
-            {this.props.locations.map(curr => (
-              <LocationCard
-                handleRelocate={this.props.handleRelocate}
-                key={curr.locationName}
-                locationDetails={curr}
+            <div className="filterBlock">
+              <p className="filterHeader">Neighborhood</p>
+              <Dropdown
+                onChange={this.handleChangeTest}
+                value={this.state.neighborhoods}
+                name="neighborhoods"
+                placeholder="Neighborhoods"
+                options={neighborhoods}
+                selection
+                fluid
+                multiple
+                search
               />
-            ))}
-          </Card.Group>
+            </div>
+
+            <div className="filterBlock">
+              <p className="filterHeader">Season</p>
+              <Dropdown
+                onChange={this.handleChangeTest}
+                value={this.state.seasons}
+                placeholder="Seasons"
+                name="seasons"
+                options={seasons}
+                selection
+                fluid
+                multiple
+                search
+              />
+            </div>
+          </div>
+
+          {/*----- cards -----*/}
+          <div className="filterNavCardCluster">
+            <Card.Group className="sideCardStyling">
+              {locationData.map(curr => (
+                <LocationCard
+                  handleRelocate={this.handleRelocate}
+                  key={curr.locationName}
+                  locationDetails={curr}
+                />
+              ))}
+            </Card.Group>
+          </div>
         </div>
+        {/*----- map -----*/}
+        <MyMap
+          locations={locationData}
+          viewport={this.state.viewport}
+          _updateViewport={this._updateViewport}
+        />
       </div>
     );
   }

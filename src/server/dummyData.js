@@ -6,8 +6,8 @@ const myLocations = [
     neighborhood: 'Midtown West',
     seasons: [2, 3, 5],
     episodes: [4, 1, 2],
-    castMembers: ['Ramona', 'Dorinda', 'Sonja'],
-    description: 'Now defunct restaurant where Sonja asked John Madhessian, "What are you doing here without DORINDA!?" '
+    description:
+      'Now defunct restaurant where Sonja asked John Madhessian, "What are you doing here without DORINDA!?" ',
   },
   {
     locationName: 'The Regency Hotel',
@@ -16,8 +16,8 @@ const myLocations = [
     neighborhood: 'Upper East Side',
     seasons: [1, 2, 3, 4, 5, 6, 7],
     episodes: [2, 3, 4, 5, 6, 7, 8, 3],
-    castMembers: ['Ramona', 'Carole', 'Kelly'],
-    description: "Hotel and bar/restaurant where Tom D'Agostino cheated on Luann"
+    description:
+      "Hotel and bar/restaurant where Tom D'Agostino cheated on Luann",
   },
   {
     locationName: 'AOA Bar & Grill',
@@ -26,13 +26,12 @@ const myLocations = [
     neighborhood: 'TriBeCa',
     seasons: [5],
     episodes: [3],
-    castMembers: ['Ramona'],
-    description: "Restaurant that Ramona invested in and also flirted with her business partner"
+    description:
+      'Restaurant that Ramona invested in and also flirted with her business partner',
   },
+];
 
-]
-
-export default myLocations
+export default myLocations;
 
 //NAME OF LOCATION
 //address
@@ -40,5 +39,4 @@ export default myLocations
 //borough
 //seasons
 //episodes
-//cast members
 //description
