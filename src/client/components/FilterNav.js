@@ -1,38 +1,19 @@
 import React from 'react';
 import { Dropdown, Card } from 'semantic-ui-react';
 
+// components
 import LocationCard from './Card';
 import MyMap from './MyMap';
 
-import locationData from '../../server/dummyData';
+//filter utility function
+import { filter } from '../../utils/filter';
 
+//css
 import '../css/App.css';
 
-const neighborhoods = [
-  { key: 'upperEastSide', text: 'Upper East Side', value: 'upperEastSide' },
-  { key: 'upperWestSide', text: 'Upper West Side', value: 'upperWestSide' },
-  { key: 'Midtown', text: 'Midtown', value: 'Midtown' },
-  { key: 'Chelsea', text: 'Chelsea', value: 'Chelsea' },
-  {
-    key: 'FlatironDistrict',
-    text: 'Flatiron District',
-    value: 'FlatironDistrict',
-  },
-];
-
-const seasons = [
-  { key: 1, text: '1', value: '1' },
-  { key: 2, text: '2', value: '2' },
-  { key: 3, text: '3', value: '3' },
-  { key: 4, text: '4', value: '4' },
-  { key: 5, text: '5', value: '5' },
-  { key: 6, text: '6', value: '6' },
-  { key: 7, text: '7', value: '7' },
-  { key: 8, text: '8', value: '8' },
-  { key: 9, text: '9', value: '9' },
-  { key: 10, text: '10', value: '10' },
-  { key: 11, text: '11', value: '11' },
-];
+//show data
+import locationData from '../../server/dummyData';
+import { seasons, neighborhoods } from '../../utils/showData';
 
 export default class FilterNav extends React.Component {
   constructor() {
@@ -49,23 +30,43 @@ export default class FilterNav extends React.Component {
         width: '100%',
         height: '100vh',
       },
+      locations: [],
+      allLocations: [],
     };
-    this.handleChangeTest = this.handleChangeTest.bind(this);
+    this.filterChange = this.filterChange.bind(this);
     this.showAll = this.showAll.bind(this);
     this._updateViewport = this._updateViewport.bind(this);
     this.handleRelocate = this.handleRelocate.bind(this);
+    this.runFilterFunc = this.runFilterFunc.bind(this);
   }
 
-  handleChangeTest(e, { value, name }) {
-    this.setState({ [name]: value });
+  componentDidMount() {
+    this.setState({ locations: locationData, allLocations: locationData });
+  }
+
+  filterChange(e, { value, name }) {
+    this.setState({ [name]: value }, this.runFilterFunc);
+  }
+
+  runFilterFunc() {
+    const filteredLocations = filter(
+      this.state.allLocations,
+      new Set(this.state.neighborhoods),
+      new Set(this.state.seasons)
+    );
+    this.setState({ locations: filteredLocations });
   }
 
   showAll() {
-    this.setState({ neighborhoods: [], seasons: [], cast: [] });
+    this.setState({
+      neighborhoods: [],
+      seasons: [],
+      cast: [],
+      locations: this.state.allLocations,
+    });
   }
 
   _updateViewport = viewport => {
-    console.log('viewport', viewport);
     this.setState({ viewport });
   };
 
@@ -81,6 +82,7 @@ export default class FilterNav extends React.Component {
   }
 
   render() {
+    const { locations } = this.state;
     return (
       <div style={{ display: 'flex' }}>
         <div className="entireFilterNav">
@@ -93,7 +95,7 @@ export default class FilterNav extends React.Component {
             <div className="filterBlock">
               <p className="filterHeader">Neighborhood</p>
               <Dropdown
-                onChange={this.handleChangeTest}
+                onChange={this.filterChange}
                 value={this.state.neighborhoods}
                 name="neighborhoods"
                 placeholder="Neighborhoods"
@@ -108,7 +110,7 @@ export default class FilterNav extends React.Component {
             <div className="filterBlock">
               <p className="filterHeader">Season</p>
               <Dropdown
-                onChange={this.handleChangeTest}
+                onChange={this.filterChange}
                 value={this.state.seasons}
                 placeholder="Seasons"
                 name="seasons"
@@ -124,7 +126,7 @@ export default class FilterNav extends React.Component {
           {/*----- cards -----*/}
           <div className="filterNavCardCluster">
             <Card.Group className="sideCardStyling">
-              {locationData.map(curr => (
+              {locations.map(curr => (
                 <LocationCard
                   handleRelocate={this.handleRelocate}
                   key={curr.locationName}
@@ -136,7 +138,7 @@ export default class FilterNav extends React.Component {
         </div>
         {/*----- map -----*/}
         <MyMap
-          locations={locationData}
+          locations={locations}
           viewport={this.state.viewport}
           _updateViewport={this._updateViewport}
         />

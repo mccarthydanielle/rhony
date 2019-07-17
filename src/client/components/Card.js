@@ -33,7 +33,7 @@ export default function LocationCard(props) {
       </Card.Content>
       <Card.Content>
         <Card.Meta>{address}</Card.Meta>
-        <Card.Meta>Season(s): {seasons.join(', ')}</Card.Meta>
+        <Card.Meta>Season(s): {[...seasons].join(', ')}</Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
     </Card>
