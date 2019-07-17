@@ -49,12 +49,16 @@ export default class FilterNav extends React.Component {
   }
 
   runFilterFunc() {
-    const filteredLocations = filter(
-      this.state.allLocations,
-      new Set(this.state.neighborhoods),
-      new Set(this.state.seasons)
-    );
-    this.setState({ locations: filteredLocations });
+    if (!this.state.neighborhoods.length && !this.state.seasons.length) {
+      this.showAll();
+    } else {
+      const filteredLocations = filter(
+        this.state.allLocations,
+        new Set(this.state.neighborhoods),
+        new Set(this.state.seasons)
+      );
+      this.setState({ locations: filteredLocations });
+    }
   }
 
   showAll() {

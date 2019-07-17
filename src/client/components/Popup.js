@@ -12,9 +12,10 @@ export default function PopupBox(props) {
       onClose={props.closePopUp}
       latitude={lat}
       longitude={long}
-      closeButton={true}
-      closeOnClick={true}
       anchor="top"
+      closeOnClick={true}
+      closeButton={true}
+      style={{ zIndex: 1000 }}
     >
       <div>{locationName}</div>
       <div>{description}</div>

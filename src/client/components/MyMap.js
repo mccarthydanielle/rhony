@@ -28,6 +28,7 @@ export default class Map extends React.Component {
     };
     this.handlePopUp = this.handlePopUp.bind(this);
     this.closePopUp = this.closePopUp.bind(this);
+    this._renderPopUp = this._renderPopUp.bind(this);
   }
 
   handlePopUp(popupInfo) {
@@ -36,6 +37,19 @@ export default class Map extends React.Component {
 
   closePopUp() {
     this.setState({ popupInfo: null });
+  }
+
+  _renderPopUp() {
+    const { popupInfo } = this.state;
+
+    return (
+      popupInfo && (
+        <PopupBox
+          closePopUp={this.closePopUp}
+          location={this.state.popupInfo}
+        />
+      )
+    );
   }
 
   render() {
@@ -58,12 +72,7 @@ export default class Map extends React.Component {
             trackUserLocation={true}
           />
 
-          {this.state.popupInfo ? (
-            <PopupBox
-              closePopUp={this.closePopUp}
-              location={this.state.popupInfo}
-            />
-          ) : null}
+          {this._renderPopUp()}
 
           {this.props.locations.map(curr => (
             <Pin
