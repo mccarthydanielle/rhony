@@ -33,13 +33,13 @@
   flex-direction: column;
 }
 
-.filterNavCardCluster{
-  flex: 5;
+.filterNavCardCluster {
+  flex: 8;
   overflow-x: scroll;
   margin-top: 20px;
 }
 
-.sideCardStyling{
+.sideCardStyling {
   display: flex;
   justify-content: center;
 }
