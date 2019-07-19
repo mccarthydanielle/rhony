@@ -18,6 +18,8 @@ import {
   TOM,
   BARBARA,
   JENNIFER,
+  TOMAS,
+  GARY,
 } from './castMembers';
 
 const castRelationships = {
@@ -65,6 +67,8 @@ const castRelationships = {
     //---------------EVERYONE ELSE
     { id: HARRY, isHousewife: false, isFriend: false, symbolType: 'square' },
     { id: TOM, isHousewife: false, isFriend: false },
+    { id: TOMAS, isHousewife: false, isFriend: false },
+    { id: GARY, isHousewife: false, isFriend: false },
   ],
   // -----------------------LINKS BETWEEN CAST
   links: [
@@ -184,6 +188,48 @@ const castRelationships = {
       source: SONJA,
       target: TOM,
       label: 'Dated on and off for several years',
+    },
+    {
+      source: SONJA,
+      target: TOMAS,
+      label:
+        "Randomer Johnny Depp lookalike Sonja schlepped in St. Bart's (so did Luann)",
+    },
+    {
+      source: LUANN,
+      target: TOMAS,
+      label:
+        "Randomer Johnny Depp lookalike Luanna schlepped in St. Bart's (so did Sonja)",
+    },
+    {
+      source: SONJA,
+      target: RAMONA,
+      label:
+        'Not only are they castmates on RHONY, they formed a friendship sometime after college.',
+    },
+    {
+      source: SONJA,
+      target: TINSLEY,
+      label:
+        "As of 2017, they had been friends for 15 years, they've been part of the same crowd in NYC",
+    },
+    {
+      source: DORINDA,
+      target: RAMONA,
+      label:
+        'Dorinda and Ramonda met while their daughters were attending the same school.',
+    },
+    {
+      source: JILL,
+      target: GARY,
+      label:
+        'As of August 2018, Jilly was dating Gary and revealed that Ramona also used to date Gary as well.',
+    },
+    {
+      source: RAMONA,
+      target: GARY,
+      label:
+        'Ramona went on 4 dates with Gary while in the process of divorcing ex-husand, Mario Singer.',
     },
   ],
 };

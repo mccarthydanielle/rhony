@@ -9,8 +9,8 @@ class CastChart extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(source, target) {
-    console.log('source', source, 'target', target);
+  onClick(source, target, label) {
+    console.log('source', source, 'target', target, 'label', label);
   }
 
   render() {
@@ -21,7 +21,6 @@ class CastChart extends React.Component {
           data={castRelationships}
           config={myConfig}
           onClickLink={this.onClick}
-          style={{ backgroundColor: 'grey' }}
         />
       </div>
     );
