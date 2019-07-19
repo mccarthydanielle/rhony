@@ -1,18 +1,20 @@
-const BETHENNY = 'Bethenny Frankel';
-const LUANN = 'Luann de Lesseps';
-const ALEX = 'Alex McCord';
-const RAMONA = 'Ramona Singer';
-const JILL = 'Jill Zarin';
-const KELLY = 'Kelly Killoren Bensimon';
-const SONJA = 'Sonja Morgan';
-const CINDY = 'Cindy Barshop';
-const AVIVA = 'Aviva Drescher';
-const CAROLE = 'Carole Radziwill';
-const HEATHER = 'Heather Thomson';
-const KRISTEN = 'Kristen Taekman';
-const DORINDA = 'Dorinda Medley';
-const JULES = 'Jules Wainstein';
-const TINSLEY = 'Tinsley Mortimer';
+import {
+  BETHENNY,
+  LUANN,
+  ALEX,
+  RAMONA,
+  JILL,
+  KELLY,
+  SONJA,
+  CINDY,
+  AVIVA,
+  CAROLE,
+  HEATHER,
+  KRISTEN,
+  DORINDA,
+  JULES,
+  TINSLEY,
+} from '../../server/castMembers';
 
 export const quotes = [
   {

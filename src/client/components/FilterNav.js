@@ -12,8 +12,9 @@ import { filter } from '../../utils/filter';
 import '../css/App.css';
 
 //show data
-import locationData from '../../server/dummyData';
-import { seasons, neighborhoods } from '../../utils/showData';
+import locationData from '../../server/locations';
+import { seasons } from '../../server/seasons';
+import { neighborhoods } from '../../server/neighborhoods';
 
 export default class FilterNav extends React.Component {
   constructor() {

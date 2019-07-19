@@ -14,18 +14,7 @@ const mapboxToken = process.env.REACT_APP_MAPBOX_TOKEN;
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      viewport: {
-        latitude: 40.7736,
-        longitude: -73.9566,
-        zoom: 13,
-        bearing: 0,
-        pitch: 0,
-        width: '100%',
-        height: '100vh',
-      },
-      popupInfo: null,
-    };
+    this.state = {};
     this.handlePopUp = this.handlePopUp.bind(this);
     this.closePopUp = this.closePopUp.bind(this);
     this._renderPopUp = this._renderPopUp.bind(this);

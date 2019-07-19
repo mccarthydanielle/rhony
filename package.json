@@ -13,7 +13,8 @@
     "react-scripts": "3.0.1",
     "react-typeform-embed": "^0.2.0",
     "semantic-ui-react": "^0.87.1",
-    "shards-react": "^1.0.3"
+    "shards-react": "^1.0.3",
+    "viewport-mercator-project": "^6.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
