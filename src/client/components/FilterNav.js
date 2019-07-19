@@ -33,6 +33,7 @@ export default class FilterNav extends React.Component {
       },
       locations: [],
       allLocations: [],
+      visible: false,
     };
     this.filterChange = this.filterChange.bind(this);
     this.showAll = this.showAll.bind(this);
@@ -68,6 +69,7 @@ export default class FilterNav extends React.Component {
       seasons: [],
       cast: [],
       locations: this.state.allLocations,
+      collapseOpen: false,
     });
   }
 
@@ -84,6 +86,15 @@ export default class FilterNav extends React.Component {
         zoom: 15,
       },
     }));
+  }
+
+  toggleNavbar() {
+    this.setState({
+      ...this.state,
+      ...{
+        collapseOpen: !this.state.collapseOpen,
+      },
+    });
   }
 
   render() {

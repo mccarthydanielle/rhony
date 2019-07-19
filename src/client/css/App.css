@@ -43,3 +43,15 @@
   display: flex;
   justify-content: center;
 }
+@media (max-width: 600px) {
+  .entireFilterNav {
+    background-color: blueviolet;
+  }
+}
+
+@media (max-width: 1500px) {
+  .filterNavCardCluster {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

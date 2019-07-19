@@ -13,23 +13,10 @@ import {
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-
     this.state = {
-      dropdownOpen: false,
       collapseOpen: false,
     };
-  }
-
-  toggleDropdown() {
-    this.setState({
-      ...this.state,
-      ...{
-        dropdownOpen: !this.state.dropdownOpen,
-      },
-    });
+    this.toggleNavbar = this.toggleNavbar.bind(this);
   }
 
   toggleNavbar() {
