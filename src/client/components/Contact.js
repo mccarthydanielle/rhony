@@ -1,7 +1,7 @@
 import React from 'react';
 import * as typeformEmbed from '@typeform/embed';
 
-const backgroundImage = require('../../assets/nyc_contact_form.jpg');
+const backgroundImage = require('../../assets/manhattan_bridge.jpg');
 
 export default class FormSelection extends React.Component {
   constructor(props) {
@@ -36,33 +36,26 @@ export default class FormSelection extends React.Component {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            height: '200px',
+            height: '300px',
           }}
         >
-          <div style={{ flex: 2, color: 'white' }}>
-            <h2 style={{ textAlign: 'bottom', color: 'white' }}>
-              Get in Touch.
-            </h2>
-          </div>
-
-          <div style={{ flex: 6 }}>
-            <p style={{ textAlign: 'center', color: 'white' }}>
-              This project wouldn't be possible without the help of dedicated
-              Bravo fans.
-            </p>
-            <p style={{ textAlign: 'center', color: 'white' }}>
-              Get in touch, add a new restaurant location, add a new cast
-              relationship, or help develop the site!
-            </p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 2,
+              color: 'white',
+            }}
+          >
+            <h2 style={{ color: 'white' }}>Get in Touch.</h2>
           </div>
         </div>
 
         <div
           style={{
-            marginTop: '20px',
             flex: 8,
-            border: 'red solid 1px',
-            height: '50vh',
+            height: '80vh',
           }}
           ref={el => (this.el = el)}
         />

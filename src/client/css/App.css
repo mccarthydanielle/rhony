@@ -5,6 +5,10 @@
   padding: 10px;
 }
 
+.hide {
+  display: none;
+}
+
 .geolocateStyle {
   position: absolute;
   top: 0;

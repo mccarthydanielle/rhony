@@ -30,27 +30,24 @@ export default class FilterNav extends React.Component {
         pitch: 0,
         width: '100%',
         height: '100vh',
+        isOpen: false,
       },
       locations: [],
       allLocations: [],
-      visible: false,
     };
-    this.filterChange = this.filterChange.bind(this);
-    this.showAll = this.showAll.bind(this);
-    this._updateViewport = this._updateViewport.bind(this);
-    this.handleRelocate = this.handleRelocate.bind(this);
-    this.runFilterFunc = this.runFilterFunc.bind(this);
   }
 
   componentDidMount() {
     this.setState({ locations: locationData, allLocations: locationData });
   }
 
-  filterChange(e, { value, name }) {
-    this.setState({ [name]: value }, this.runFilterFunc);
-  }
+  toggleFilterNav = () => {};
 
-  runFilterFunc() {
+  filterChange = (e, { value, name }) => {
+    this.setState({ [name]: value }, this.runFilterFunc);
+  };
+
+  runFilterFunc = () => {
     if (!this.state.neighborhoods.length && !this.state.seasons.length) {
       this.showAll();
     } else {
@@ -61,9 +58,9 @@ export default class FilterNav extends React.Component {
       );
       this.setState({ locations: filteredLocations });
     }
-  }
+  };
 
-  showAll() {
+  showAll = () => {
     this.setState({
       neighborhoods: [],
       seasons: [],
@@ -71,13 +68,13 @@ export default class FilterNav extends React.Component {
       locations: this.state.allLocations,
       collapseOpen: false,
     });
-  }
+  };
 
   _updateViewport = viewport => {
     this.setState({ viewport });
   };
 
-  handleRelocate(latitude, longitude) {
+  handleRelocate = (latitude, longitude) => {
     this.setState(prevState => ({
       viewport: {
         ...prevState.viewport,
@@ -86,22 +83,30 @@ export default class FilterNav extends React.Component {
         zoom: 15,
       },
     }));
-  }
+  };
 
-  toggleNavbar() {
+  toggleNavbar = () => {
     this.setState({
       ...this.state,
       ...{
         collapseOpen: !this.state.collapseOpen,
       },
     });
-  }
+  };
+
+  handleToggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  };
 
   render() {
     const { locations } = this.state;
+    const { showFilterNav } = this.props;
+
     return (
       <div style={{ display: 'flex' }}>
-        <div className="entireFilterNav">
+        <div className={showFilterNav === true ? '' : 'hide'}>
           {/*----- filtering -----*/}
           <div style={{ flex: 3 }}>
             <div className="filterBlock">
@@ -152,6 +157,7 @@ export default class FilterNav extends React.Component {
             </Card.Group>
           </div>
         </div>
+
         {/*----- map -----*/}
         <MyMap
           locations={locations}

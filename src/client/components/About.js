@@ -6,7 +6,9 @@ export default class About extends React.Component {
     super();
     this.state = {
       giphys: [],
+      selectedGif: {},
     };
+    this.gifRandomizer = this.gifRandomizer.bind(this);
   }
 
   componentDidMount() {
@@ -18,7 +20,6 @@ export default class About extends React.Component {
     );
     xhr
       .done(function(data) {
-        console.log('success got data', data);
         newGifs = data.data;
       })
       .then(() => {
@@ -26,38 +27,107 @@ export default class About extends React.Component {
       });
   }
 
-  // gifRandomizer = () => {
-  //   const idx = Math.floor(Math.random() * this.state.giphys.length) + 1;
-  //   return ` "https://giphy.com/embed/${this.state.giphys[idx].slug}"`;
-  // };
+  gifRandomizer = () => {
+    const idx = Math.floor(Math.random() * this.state.giphys.length) + 1;
+    this.setState({ selectedGif: this.state.giphys[idx] });
+  };
 
   render() {
     return (
-      <div>
-        <div>THIS IS MY ABOUT COMPONENT!!!!! HAS THIS CHANGED?</div>
-        <p>
-          Hi fellow Bravo-obsessed people. My name is Danielle McCarthy and I
-          developed this website after experiencing a lack of motivation to
-          build a personal portfolio website. I love reality tv and decided to
-          build something I'm interested in. I hope you enjoy the site and would
-          like to thank everyone who has contributed the mass amounts of data
-          that is required to maintain a site like this. Feel free to email me
-          or tweet me with any suggestions / ideas for the site. Cheers.{' '}
-        </p>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          margin: '20px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 'solid red 1px',
+          height: '100vh',
+        }}
+      >
+        {/* GIPHY SHIAT */}
+
         <div>
-          {/* <iframe
-            src={this.gifRandomizer()}
-            width="480"
-            height="265"
-            frameBorder="0"
-            className="giphy-embed"
-            allowFullScreen
-          /> */}
+          {Object.keys(this.state.selectedGif).length && (
+            <div>
+              <div
+                style={{
+                  width: '100%',
+                  height: 0,
+                  paddingBottom: '59%',
+                  position: 'relative',
+                }}
+              >
+                <iframe
+                  title="gif"
+                  src={this.state.selectedGif.embed_url}
+                  width="100%"
+                  height="100%"
+                  style={{ position: 'absolute' }}
+                  frameBorder="0"
+                  className="giphy-embed"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ABOUT ME TEXT  */}
+        <div>
+          <h1>Hi, I'm Danielle.</h1>
           <p>
-            <a href="https://giphy.com/gifs/season-9-episode-14-real-housewives-3ohryorU9mIF0scqNq">
-              via GIPHY
-            </a>
+            Hi fellow Bravo-obsessed people. My name is Danielle McCarthy and
+            this is my passion project. After attending a coding bootcamp from
+            October 2018-February 2019 I decided I wanted to begin a side
+            project to keep my skills fresh.
           </p>
+
+          <p>
+            I love all reality tv and especially RHONY. I'm always looking for
+            more data, if there is a missing restaurant or cast relationship
+            from the site, get in touch! If you're a developer, designer,
+            graphic artist, or would like to contribute to the site in any way
+            get in touch! If you have any suggested / ideas for the site, get in
+            touch! Cheers.
+          </p>
+          <ul>
+            <li>
+              <a href="/contact">Contact Form</a>
+            </li>
+            <li>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://github.com/mccarthydanielle/rhony"
+              >
+                Github
+              </a>
+            </li>
+            <li>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://twitter.com/whatdanielle"
+              >
+                Twitter
+              </a>
+            </li>
+            <li>
+              <a href="mailto:daniellemccarthy54@gmail.com?Subject=RHONY%Site%Inquiry">
+                Email
+              </a>
+            </li>
+            <li>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.instagram.com/whatdanielle/"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     );

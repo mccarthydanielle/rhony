@@ -65,6 +65,7 @@ export default class Map extends React.Component {
 
           {this.props.locations.map(curr => (
             <Pin
+              id={curr.locationName}
               key={curr.locationName}
               handlePopUp={this.handlePopUp}
               location={curr}
