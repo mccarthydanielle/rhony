@@ -17,6 +17,12 @@ class App extends React.Component {
       showFilterNav: true,
     };
   }
+
+  componentDidMount() {
+    let screenSize = window.innerWidth > 800;
+    this.setState({ largeScreen: screenSize, showFilterNav: screenSize });
+  }
+
   toggleScreen = () => {
     this.setState(
       { largeScreen: window.innerWidth > 800 },
