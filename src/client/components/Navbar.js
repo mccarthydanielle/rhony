@@ -43,7 +43,17 @@ class NavBar extends React.Component {
       this.props.location.pathname === '/' ||
       this.props.location.pathname === '/map';
     return (
-      <Navbar type="light" expand="md" style={{ backgroundColor: '#393F49' }}>
+      <Navbar
+        type="light"
+        expand="md"
+        style={{
+          zIndex: 3000,
+          width: '100%',
+          position: 'fixed',
+          backgroundColor: '#393F49',
+          marginBottom: '50px',
+        }}
+      >
         {!this.props.largeScreen && showFilter ? (
           <NavLink onClick={this.props.toggleFilterNav}>
             <div>

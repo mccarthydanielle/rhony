@@ -28,7 +28,7 @@ export default class FilterNav extends React.Component {
         zoom: 13,
         bearing: 0,
         pitch: 0,
-        width: '100%',
+        width: '100vw',
         height: '100vh',
         isOpen: false,
       },
@@ -71,7 +71,7 @@ export default class FilterNav extends React.Component {
   };
 
   _updateViewport = viewport => {
-    this.setState({ viewport });
+    this.setState({ viewport: viewport });
   };
 
   handleRelocate = (latitude, longitude) => {
@@ -105,10 +105,16 @@ export default class FilterNav extends React.Component {
     const { showFilterNav } = this.props;
 
     return (
-      <div style={{ display: 'flex' }}>
-        <div className={showFilterNav === true ? '' : 'hide'}>
+      <div
+        style={{ display: 'flex', height: '100vh', border: 'red solid 3px' }}
+      >
+        {/*----- start of side filter nav -----*/}
+        <div
+          style={{ width: '500px' }}
+          className={showFilterNav === true ? '' : 'hide'}
+        >
           {/*----- filtering -----*/}
-          <div style={{ flex: 3 }}>
+          <div style={{ marginTop: '100px' }}>
             <div className="filterBlock">
               <button onClick={this.showAll}>Show all</button>
             </div>
@@ -157,12 +163,13 @@ export default class FilterNav extends React.Component {
             </Card.Group>
           </div>
         </div>
-
+        {/*----- end of filter nav -----*/}
         {/*----- map -----*/}
         <MyMap
           locations={locations}
           viewport={this.state.viewport}
           _updateViewport={this._updateViewport}
+          // style={{ width: '80%' }}
         />
       </div>
     );

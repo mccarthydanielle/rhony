@@ -14,7 +14,7 @@ export default function LocationCard(props) {
   return (
     <Card
       onClick={() => props.handleRelocate(lat, long)}
-      style={{ marginTop: '30px' }}
+      style={{ marginTop: '30px', marginLeft: '5px', marginRight: '5px' }}
     >
       <Card.Content>
         <Card.Header>

@@ -44,9 +44,11 @@ export default class Map extends React.Component {
   render() {
     const { viewport, _updateViewport } = this.props;
     return (
-      <div style={{ flex: 4 }}>
+      <div>
         <ReactMapGL
           {...viewport}
+          width="100vw"
+          height="100vh"
           mapboxApiAccessToken={mapboxToken}
           onViewportChange={_updateViewport}
         >
