@@ -25,8 +25,9 @@ Check out upcoming and in process features on <a href="https://trello.com/b/xQZW
 
 ## Contributions
 
-If you'd like to contribute and get involved, send me an email or open an issue on github. If you are a more hands on person, just submit a pull request.
+If you'd like to contribute and get involved, send me an email or open an issue on github. 
 
+If you are a more hands on person, fork the repository, make a new branch, and create a pull request.
 ## Credits
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
