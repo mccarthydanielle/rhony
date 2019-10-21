@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Card } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 
 // components
 import LocationCard from './Card';
@@ -105,16 +105,11 @@ export default class FilterNav extends React.Component {
     const { showFilterNav } = this.props;
 
     return (
-      <div
-        style={{ display: 'flex', height: '100vh', border: 'red solid 3px' }}
-      >
+      <div className="mainMapAndFilter">
         {/*----- start of side filter nav -----*/}
-        <div
-          style={{ width: '500px' }}
-          className={showFilterNav === true ? '' : 'hide'}
-        >
+        <div className={showFilterNav === true ? 'sideNavigation' : 'hide'}>
           {/*----- filtering -----*/}
-          <div style={{ marginTop: '100px' }}>
+          <div className="entireFilterSection">
             <div className="filterBlock">
               <button onClick={this.showAll}>Show all</button>
             </div>
@@ -152,15 +147,13 @@ export default class FilterNav extends React.Component {
 
           {/*----- cards -----*/}
           <div className="filterNavCardCluster">
-            <Card.Group className="sideCardStyling">
-              {locations.map(curr => (
-                <LocationCard
-                  handleRelocate={this.handleRelocate}
-                  key={curr.locationName}
-                  locationDetails={curr}
-                />
-              ))}
-            </Card.Group>
+            {locations.map(curr => (
+              <LocationCard
+                handleRelocate={this.handleRelocate}
+                key={curr.locationName}
+                locationDetails={curr}
+              />
+            ))}
           </div>
         </div>
         {/*----- end of filter nav -----*/}
@@ -169,7 +162,6 @@ export default class FilterNav extends React.Component {
           locations={locations}
           viewport={this.state.viewport}
           _updateViewport={this._updateViewport}
-          // style={{ width: '80%' }}
         />
       </div>
     );

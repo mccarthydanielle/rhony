@@ -1,12 +1,17 @@
+/* map & filter page */
+
+.mainMapAndFilter {
+  display: flex;
+  height: 100vh;
+}
+
+/* map */
+
 .navStyle {
   position: absolute;
   top: 0;
   right: 0;
   padding: 10px;
-}
-
-.hide {
-  display: none;
 }
 
 .geolocateStyle {
@@ -16,8 +21,25 @@
   margin: 10px;
 }
 
+/* filter nav page */
+
+.hide {
+  display: none;
+}
+
+.sideNavigation {
+  width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.entireFilterSection {
+  margin-top: 90px;
+}
+
 .filterBlock {
-  margin: 20px;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,21 +52,6 @@
 }
 
 .filterNavCardCluster {
-  flex: 8;
-  overflow-x: auto;
-  margin-top: 20px;
-  height: '100%';
+  overflow-y: scroll;
   padding: 20px;
-}
-
-.sideCardStyling {
-  display: flex;
-  justify-content: center;
-}
-
-@media (max-width: 1500px) {
-  .filterNavCardCluster {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
 }
