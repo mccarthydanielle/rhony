@@ -1,24 +1,34 @@
+/* top nav bar */
+
 /* map & filter page */
 
 .mainMapAndFilter {
   display: flex;
   height: 100vh;
+  width: 100vw;
 }
 
 /* map */
 
 .navStyle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
+  margin: 5px;
 }
 
 .geolocateStyle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 10px;
+  margin: 5px;
+}
+
+.mapStyle {
+  width: 100%;
+  height: 100%;
+  padding-top: 70px;
+}
+
+.navigationIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 13px;
 }
 
 /* filter nav page */
@@ -53,5 +63,25 @@
 
 .filterNavCardCluster {
   overflow-y: scroll;
-  padding: 20px;
+  padding: 0px 20px 0px;
+}
+
+/* contact page */
+
+.contactPageGeneral {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.contactPageHeader {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  background-image: url('../../assets/manhattan_bridge.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 300px;
 }

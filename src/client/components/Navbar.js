@@ -31,10 +31,7 @@ class NavBar extends React.Component {
 
   toggleNavbar = () => {
     this.setState({
-      ...this.state,
-      ...{
-        collapseOpen: !this.state.collapseOpen,
-      },
+      collapseOpen: !this.state.collapseOpen,
     });
   };
 
@@ -44,14 +41,12 @@ class NavBar extends React.Component {
       this.props.location.pathname === '/map';
     return (
       <Navbar
-        type="light"
         expand="md"
         style={{
           zIndex: 3000,
           width: '100%',
           position: 'fixed',
           backgroundColor: '#393F49',
-          marginBottom: '50px',
         }}
       >
         {!this.props.largeScreen && showFilter ? (
@@ -73,16 +68,13 @@ class NavBar extends React.Component {
           </NavbarBrand>
         )}
 
-        <NavbarToggler
-          theme="light"
-          style={{ color: 'white' }}
-          onClick={this.toggleNavbar}
-        />
+        <NavbarToggler onClick={this.toggleNavbar} />
 
         <Collapse
-          style={{ color: 'white' }}
+          style={{ marginLeft: '25px', color: 'white', left: 0 }}
           open={this.state.collapseOpen}
           navbar
+          justified
         >
           <Nav navbar>
             <NavItem>
@@ -106,15 +98,7 @@ class NavBar extends React.Component {
                 style={{ color: '#FFFFFF', fontSize: '20px' }}
                 href="/contact"
               >
-                Contact
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                style={{ color: '#FFFFFF', fontSize: '20px' }}
-                href="/about"
-              >
-                About
+                Get in Touch
               </NavLink>
             </NavItem>
           </Nav>

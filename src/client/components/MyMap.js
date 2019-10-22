@@ -44,24 +44,27 @@ export default class Map extends React.Component {
   render() {
     const { viewport, _updateViewport } = this.props;
     return (
-      <div>
+      <div className="mapStyle">
         <ReactMapGL
           {...viewport}
-          width="100vw"
-          height="100vh"
+          width="100%"
+          height="100%"
           mapboxApiAccessToken={mapboxToken}
           onViewportChange={_updateViewport}
         >
-          <div className="nav navStyle">
-            <NavigationControl onViewportChange={_updateViewport} />
-          </div>
+          <div className="navigationIcons">
+            <NavigationControl
+              className="navStyle"
+              onViewportChange={_updateViewport}
+            />
 
-          <GeolocateControl
-            className="geolocateStyle"
-            onViewportChange={_updateViewport}
-            positionOptions={{ enableHighAccuracy: true }}
-            trackUserLocation={true}
-          />
+            <GeolocateControl
+              className="geolocateStyle"
+              onViewportChange={_updateViewport}
+              positionOptions={{ enableHighAccuracy: true }}
+              trackUserLocation={true}
+            />
+          </div>
 
           {this._renderPopUp()}
 

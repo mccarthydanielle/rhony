@@ -1,8 +1,5 @@
 import React from 'react';
 import * as typeformEmbed from '@typeform/embed';
-
-const backgroundImage = require('../../assets/manhattan_bridge.jpg');
-
 export default class FormSelection extends React.Component {
   constructor(props) {
     super(props);
@@ -25,20 +22,8 @@ export default class FormSelection extends React.Component {
   }
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignContent: 'center',
-            justifyContent: 'center',
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            height: '300px',
-          }}
-        >
+      <div className="contactPageGeneral">
+        <div className="contactPageHeader">
           <div
             style={{
               display: 'flex',
